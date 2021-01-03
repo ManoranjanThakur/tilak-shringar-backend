@@ -34,7 +34,7 @@ exports.addCategory = (req, res) => {
   };
 
   if (req.file) {
-    categoryObj.categoryImage = "/public/" + req.file.filename;
+    categoryObj.categoryImage = '139.59.92.185:2000' + "/public/" + req.file.filename;
   }
 
   if (req.body.parentId) {
