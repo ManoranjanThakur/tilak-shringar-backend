@@ -11,7 +11,7 @@ exports.createProduct = (req, res) => {
 
   if (req.files.length > 0) {
     productPictures = req.files.map((file) => {
-      return { img: file.location };
+      return { img: `'139.59.92.185:2000'/public/${banner.filename}` };
     });
   }
 
