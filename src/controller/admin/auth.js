@@ -56,7 +56,7 @@ exports.signin = (req, res) => {
       ) {
         const token = jwt.sign(
           { _id: user._id, role: user.role },
-          MERNSECRET,
+          'MERNSECRET',
           { expiresIn: "1d" }
         );
         const { _id, firstName, lastName, email, role, fullName } = user;

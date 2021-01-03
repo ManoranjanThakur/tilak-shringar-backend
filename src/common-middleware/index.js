@@ -14,34 +14,34 @@ const storage = multer.diskStorage({
   },
 });
 
-const accessKeyId = process.env.accessKeyId;
-const secretAccessKey = process.env.secretAccessKey;
+// const accessKeyId = process.env.accessKeyId;
+// const secretAccessKey = process.env.secretAccessKey;
 
-const s3 = new aws.S3({
-  accessKeyId,
-  secretAccessKey,
-});
+// const s3 = new aws.S3({
+//   accessKeyId,
+//   secretAccessKey,
+// });
 
-exports.upload = multer({ storage });
+// exports.upload = multer({ storage });
 
-exports.uploadS3 = multer({
-  storage: multerS3({
-    s3: s3,
-    bucket: "flipkart-clone-app",
-    acl: "public-read",
-    metadata: function (req, file, cb) {
-      cb(null, { fieldName: file.fieldname });
-    },
-    key: function (req, file, cb) {
-      cb(null, shortid.generate() + "-" + file.originalname);
-    },
-  }),
-});
+// exports.uploadS3 = multer({
+//   storage: multerS3({
+//     s3: s3,
+//     bucket: "flipkart-clone-app",
+//     acl: "public-read",
+//     metadata: function (req, file, cb) {
+//       cb(null, { fieldName: file.fieldname });
+//     },
+//     key: function (req, file, cb) {
+//       cb(null, shortid.generate() + "-" + file.originalname);
+//     },
+//   }),
+// });
 
 exports.requireSignin = (req, res, next) => {
   if (req.headers.authorization) {
     const token = req.headers.authorization.split(" ")[1];
-    const user = jwt.verify(token, MERNSECRET);
+    const user = jwt.verify(token, 'MERNSECRET');
     req.user = user;
   } else {
     return res.status(400).json({ message: "Authorization required" });

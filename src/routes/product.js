@@ -2,8 +2,8 @@ const express = require("express");
 //const {  } = require('../controller/category');
 const {
   requireSignin,
-  adminMiddleware,
-  uploadS3,
+  adminMiddleware
+  // uploadS3,
 } = require("../common-middleware");
 const {
   createProduct,
@@ -32,7 +32,7 @@ router.post(
   "/product/create",
   requireSignin,
   adminMiddleware,
-  uploadS3.array("productPicture"),
+  // uploadS3.array("productPicture"),
   createProduct
 );
 router.get("/products/:slug", getProductsBySlug);
