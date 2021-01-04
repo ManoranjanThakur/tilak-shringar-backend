@@ -5,14 +5,14 @@ const path = require("path");
 const multerS3 = require("multer-s3");
 const aws = require("aws-sdk");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(path.dirname(__dirname), "uploads"));
-  },
-  filename: function (req, file, cb) {
-    cb(null, shortid.generate() + "-" + file.originalname);
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, path.join(path.dirname(__dirname), "uploads"));
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, shortid.generate() + "-" + file.originalname);
+//   },
+// });
 
 // const accessKeyId = process.env.accessKeyId;
 // const secretAccessKey = process.env.secretAccessKey;
