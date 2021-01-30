@@ -4,12 +4,13 @@ const bcrypt = require("bcrypt");
 const shortid = require("shortid");
 
 const generateJwtToken = (_id, role) => {
-  return jwt.sign({ _id, role }, 'MERNSECRET', {
+  return jwt.sign({ _id, role }, "MERNSECRET", {
     expiresIn: "1d",
   });
 };
 
 exports.signup = (req, res) => {
+  //TODO add user verification email
   User.findOne({ email: req.body.email }).exec(async (error, user) => {
     if (user)
       return res.status(400).json({
@@ -73,9 +74,9 @@ exports.signin = (req, res) => {
   });
 };
 
-exports.signout = (req,res)=>{
-  res.clearCookie('token');
+exports.signout = (req, res) => {
+  res.clearCookie("token");
   res.status(200).json({
-      message:'Signed Out Successfulyy...!'
-  })
-}
+    message: "Signed Out Successfulyy...!",
+  });
+};

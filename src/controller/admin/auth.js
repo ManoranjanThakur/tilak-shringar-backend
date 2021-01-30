@@ -52,10 +52,10 @@ exports.signin = (req, res) => {
         isPassword &&
         (user.role === "admin" || user.role === "super-admin")
       ) {
+        //TODO add expiresIn
         const token = jwt.sign(
           { _id: user._id, role: user.role },
-          'MERNSECRET',
-          { expiresIn: "1d" }
+          'MERNSECRET'
         );
         const { _id, firstName, lastName, email, role, fullName } = user;
         res.cookie("token", token, { expiresIn: "1d" });

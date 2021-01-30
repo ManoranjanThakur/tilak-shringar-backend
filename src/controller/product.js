@@ -9,8 +9,10 @@ exports.createProduct = (req, res) => {
   const { name, price, description, category, quantity, createdBy } = req.body;
   let productPictures = [];
 
+  console.log(req.body);
+
   if (req.files.length > 0) {
-    productPictures = req.files.map(file => {
+    productPictures = req.files.map((file) => {
       return { img: file.filename };
     });
   }
@@ -27,7 +29,10 @@ exports.createProduct = (req, res) => {
   });
 
   product.save((error, product) => {
-    if (error) return res.status(400).json({ error });
+    if (error) {
+      console.log(error);
+      return res.status(400).json({ error });
+    }
     if (product) {
       res.status(201).json({ product });
     }
@@ -101,7 +106,7 @@ exports.getProductDetailsById = (req, res) => {
 
 // new update
 exports.deleteProductById = (req, res) => {
-  const { productId } = req.body.payload;
+  const { productId } = req.params;
   if (productId) {
     Product.deleteOne({ _id: productId }).exec((error, result) => {
       if (error) return res.status(400).json({ error });
